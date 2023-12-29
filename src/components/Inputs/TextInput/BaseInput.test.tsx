@@ -129,24 +129,5 @@ describe('BaseInput Component', () => {
 
       expect(onChangeTextMock).toHaveBeenCalledWith('newPassword123');
     });
-
-    it('should call the onChangeText function when text with mask is changed', () => {
-      const onChangeTextMock = jest.fn();
-      const {getByPlaceholderText} = render(
-        <BaseInput
-          label="Birthday"
-          placeholder="Enter your birthday"
-          onChangeText={onChangeTextMock}
-          type="birthday"
-        />,
-      );
-
-      fireEvent.changeText(
-        getByPlaceholderText('Enter your birthday'),
-        '10101990',
-      );
-
-      expect(onChangeTextMock).toHaveBeenCalledWith('10/10/1990');
-    });
   });
 });

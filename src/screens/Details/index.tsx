@@ -1,7 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-console */
 import React, {useState, useRef, useEffect, useMemo} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import RNFS from 'react-native-fs';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {useDetails} from './hooks/useDetails';
@@ -9,12 +7,11 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import {Routes, RootStackParamList} from '@constants/routes';
 import {Typography, Button} from '@components/index';
 import S from './styles';
-import {View} from 'react-native';
-import {TouchableOpacity} from 'react-native';
 
 export const DetailsScreen = () => {
   const {params} = useRoute<RouteProp<RootStackParamList, Routes.DETAILS>>();
   const device = useCameraDevice('back');
+  const camera = useRef<Camera>(null);
 
   const {
     deleteIsLoading,
@@ -26,8 +23,6 @@ export const DetailsScreen = () => {
   const [showCamera, setShowCamera] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
   const [imageSource, setImageSource] = useState('');
-
-  const camera = useRef<Camera>(null);
 
   const capturePhoto = async () => {
     if (camera.current !== null) {
@@ -61,9 +56,10 @@ export const DetailsScreen = () => {
             device={device!}
             ref={camera}
             style={StyleSheet.absoluteFill}
-            isActive={showCamera}
+            isActive={true}
             photo={true}
           />
+
           <S.TakePhotButtomContainer>
             <S.TakePhotButtom onPress={() => capturePhoto()} />
           </S.TakePhotButtomContainer>

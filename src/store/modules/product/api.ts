@@ -1,4 +1,6 @@
+import {IEditProductRequest} from '@interfaces/Product/IEditProductRequest';
 import {IListProductsResponse} from '@interfaces/Product/IListProductsResponse';
+import {IRemoveProductRequest} from '@interfaces/Product/IRemoveProductRequest';
 import {
   BaseQueryApi,
   createApi,
@@ -32,15 +34,15 @@ export const productApi = createApi({
         method: 'GET',
       }),
     }),
-    editProduct: builder.mutation({
+    editProduct: builder.mutation<{}, IEditProductRequest>({
       query: ({productId, newProduct}) => ({
         url: `products/${productId}`,
         method: 'PUT',
         body: newProduct,
       }),
     }),
-    removeProduct: builder.mutation({
-      query: productId => ({
+    removeProduct: builder.mutation<{}, IRemoveProductRequest>({
+      query: ({productId}) => ({
         url: `products/${productId}`,
         method: 'DELETE',
       }),

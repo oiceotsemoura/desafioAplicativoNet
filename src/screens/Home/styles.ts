@@ -44,10 +44,19 @@ const ContentContainer = styled.View`
     `}
 `;
 
+const Container = styled.View`
+  ${({theme}) =>
+    css`
+      padding: ${theme.spacing.SM}px;
+      flex: 1;
+    `}
+`;
+
 export default {
   ListItemContainer,
   Title,
   ContentContainer,
   Thunbnail,
   ProductTitle,
+  Container,
 };

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, {useEffect} from 'react';
-import {ScrollView, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {useListProductsMutation} from '@store/modules/product/api';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '@constants/routes';
@@ -17,7 +17,7 @@ export const HomeScreen = () => {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={{padding: 10}}>
+    <S.Container>
       <S.Title>Produtos</S.Title>
       <FlatList
         data={data?.products!}
@@ -43,6 +43,6 @@ export const HomeScreen = () => {
 
       {isLoading && <Typography>Loading</Typography>}
       {isError && <Typography>Error</Typography>}
-    </ScrollView>
+    </S.Container>
   );
 };
